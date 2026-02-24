@@ -14,7 +14,7 @@ namespace Prjcts
         input: any char type symbol
         output: char type symbol
         */
-        public static char toUpperCase(char letter)
+        public static char ToUpperCase(char letter)
         {
             return (letter >= 'a' && letter <= 'z') ? (char)(letter - 32) : letter;
         }
@@ -24,7 +24,7 @@ namespace Prjcts
        input: any char type symbol
        output: char type symbol 
        */
-        public static char toLowerCase(char letter)
+        public static char ToLowerCase(char letter)
         {
             return (letter >= 'A' && letter <= 'Z') ? (char)(letter + 32) : letter;
         }
@@ -34,12 +34,12 @@ namespace Prjcts
         input: string
         output: string
         */
-        public static string capitalizeString(string S)
+        public static string CapitalizeString(string S)
         {
             string S2 = "";
             for (int i = 0; i < S.Length; i++)
             {
-                S2 += EngUtils.toUpperCase(S[i]);
+                S2 += EngUtils.ToUpperCase(S[i]);
             }
             return S2;
         }
@@ -49,12 +49,12 @@ namespace Prjcts
         input: string
         output: string
         */
-        public static string lowerString(string S)
+        public static string LowerString(string S)
         {
             string S2 = "";
             for (int i = 0; i < S.Length; i++)
             {
-                S2 += EngUtils.toLowerCase(S[i]);
+                S2 += EngUtils.ToLowerCase(S[i]);
             }
             return S2;
         }
@@ -64,7 +64,7 @@ namespace Prjcts
         input: char type symbol
         output: true / false bool statement
         */
-        public static bool isEngLetter(char letter)
+        public static bool IsEngLetter(char letter)
         {
             return (letter >= 'A' && letter <= 'Z' || letter >= 'a' && letter <= 'z') ? true : false;
         }
@@ -73,7 +73,7 @@ namespace Prjcts
         input: any symbol / character
         output: true / false value
         */
-        public static bool isUpperCase(char letter)
+        public static bool IsUpperCase(char letter)
         {
             if (letter >= 'A' && letter <= 'Z')
             {
@@ -90,7 +90,7 @@ namespace Prjcts
         input: any symbol / character
         output: true / false value
         */
-        public static bool isLowerCase(char letter)
+        public static bool IsLowerCase(char letter)
         {
             if (letter >= 'a' && letter <= 'z')
             {
@@ -107,7 +107,7 @@ namespace Prjcts
         input: The input string to check.
         output: Percentage (0 to 100) of English words.
         */
-        public static double getEnglishWordPercentage(string input)
+        public static double GetEnglishWordPercentage(string input)
         {
             if (string.IsNullOrWhiteSpace(input))
                 return 0.0;
@@ -124,7 +124,6 @@ namespace Prjcts
             int englishWordCount = words.Count(word => EnglishWords.Contains(word));
             return (double)englishWordCount / words.Count * 100.0;
         }
-
 
         // Static, sorted HashSet of common English words for fast lookup
         public static readonly HashSet<string> EnglishWords = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
