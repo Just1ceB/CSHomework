@@ -10,11 +10,10 @@ namespace Prjcts
 {
     internal class Funcs
     {
-        /*
-        This function asks if user want to keep using the program that using the function
-        input: none
-        output: whether to keep choosing between the options
-        */
+        /// <summary>
+        /// This function asks the user whether he wants to keep to choose options in program
+        /// </summary>
+        /// <returns>Whether user wants to keep using the program and choose options</returns>
         public static bool RepeatChoosing()
         {
             bool correct = false;
@@ -47,12 +46,13 @@ namespace Prjcts
 
             return false; // Function doesn't work if removed but rudement in general
         }
-
-        /*
-        This function will get minimal and maximal number to generate a number in their bounds
-        input: minimal number, maximal number
-        output: random number between them
-        */
+        
+        /// <summary>
+        /// This function will get minimal and maximal number to generate a number in their bounds
+        /// </summary>
+        /// <param name="min">Bottom bound to random num</param>
+        /// <param name="max">Upper bound to random num</param>
+        /// <returns>Random num between <c>min</c> and <c>max</c></returns>
         public static int GenNumber(int min, int max)
         {
             Random rnd = new Random();
@@ -63,22 +63,21 @@ namespace Prjcts
 
             return rnd.Next(min, max);
         }
-
-        /*
-        This function generates array with random numbers
-        input: array`s length, minimal possible number and maximal possible number
-        output: randomized array
-        */
+        
+        /// <summary>
+        /// This function generates array with random numbers
+        /// </summary>
+        /// <param name="length">Array`s length</param>
+        /// <param name="min">Bottom bound to random array value</param>
+        /// <param name="max">Upper bound to random array value</param>
+        /// <returns>Array filled with random numbers between <c>min</c> and <c>max</c></returns>
         public static int[] GenArr(int length, int min, int max)
         {
-
+            Random rnd = new Random();
             int tmp = max;
             max = Math.Max(min, max);
             min = Math.Min(min, tmp);
             max++;
-
-            Random rnd = new Random();
-
             int[] arr = new int[length];
             for (int i = 0; i < arr.Length; i++)
             {
@@ -86,12 +85,12 @@ namespace Prjcts
             }
             return arr;
         }
-
-        /*
-        This function records array from the user
-        input: array length
-        output: array with values from the user
-        */
+        
+        /// <summary>
+        /// This function records array from the user
+        /// </summary>
+        /// <param name="length">Length of the recorded array</param>
+        /// <returns>Array filled with values from user input</returns>
         public static int[] RecordArray(int length)
         {
             int[] arr = new int[length];
@@ -108,12 +107,12 @@ namespace Prjcts
             }
             return arr;
         }
-
-        /*
-        This function prints array in [a, b, c] format
-        input: array
-        output: none
-        */
+        
+        /// <summary>
+        /// This function prints array in <c>[a, b, c]</c> format
+        /// </summary>
+        /// <param name="arr">Array to print</param>
+        /// <example><code>[a, b, c]</code> or <code>[0, 1, 2]</code></example>
         public static void PrintArray(int[] arr)
         {
             Console.Write('[');
@@ -123,22 +122,24 @@ namespace Prjcts
                 Console.Write(i < arr.Length - 1 ? ", " : "]");
             }
         }
-
-        /*
-        This function checks which array between two are the longest one
-        input: two arrays
-        output: the longest array
-        */
+        
+        /// <summary>
+        /// This function checks which array between the two is the longest one
+        /// </summary>
+        /// <param name="arr1">First array to check</param>
+        /// <param name="arr2">Second array to check</param>
+        /// <returns>Longest array between the two</returns>
         public static int[] LongestArray(int[] arr1, int[] arr2)
         {
             return (arr1.Length > arr2.Length) ? arr1 : arr2;
         }
-
-        /*
-        This function checks which array between two are the shortest one
-        input: two arrays
-        output: the shortest array
-        */
+        
+        /// <summary>
+        /// This function checks which array between the two is the shortest one
+        /// </summary>
+        /// <param name="arr1">First array to check</param>
+        /// <param name="arr2">Second array to check</param>
+        /// <returns>Shortest array between the two</returns>
         public static int[] ShortestArray(int[] arr1, int[] arr2)
         {
             return (arr1.Length < arr2.Length) ? arr1 : arr2;

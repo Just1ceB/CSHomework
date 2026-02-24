@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/run/media/just1ceb/PRJCTDRIVE/PrjctsC#/Prjcts/Prjcts.csproj",
+      "projectUniqueName": "/home/just1ceb/Documents/HomeworkCoding/ConsoleAppHW/Prjcts.csproj",
       "projectName": "Prjcts",
-      "projectPath": "/run/media/just1ceb/PRJCTDRIVE/PrjctsC#/Prjcts/Prjcts.csproj",
+      "projectPath": "/home/just1ceb/Documents/HomeworkCoding/ConsoleAppHW/Prjcts.csproj",
       "packagesPath": "/home/just1ceb/.nuget/packages/",
-      "outputPath": "/run/media/just1ceb/PRJCTDRIVE/PrjctsC#/Prjcts/obj/",
+      "outputPath": "/home/just1ceb/Documents/HomeworkCoding/ConsoleAppHW/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/just1ceb/.nuget/NuGet/NuGet.Config"
