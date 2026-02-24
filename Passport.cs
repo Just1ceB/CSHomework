@@ -49,7 +49,7 @@ namespace Prjcts
 
         public bool IsValid(Date dateChecked)
         {
-            return this.expiryDate.CompareTo(dateChecked) == 1 ? true : false;
+            return this.expiryDate.CompareTo(dateChecked) > 0 ? true : false;
         }
 
         public override string ToString()

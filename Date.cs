@@ -153,39 +153,17 @@ namespace Prjcts
 
         public int CompareTo(Date other)
         {
-            if (this.year > other.GetYear())
-                {
-                return 1;
-                }
-            else if (this.year < other.GetYear())
+            if (this.year != other.GetYear())
             {
-                return -1;
+                return this.year - other.GetYear();
+            }
+            else if (this.month != other.GetMonth())
+            {
+                return this.month - other.GetMonth();
             }
             else
             {
-                if (this.month > other.GetMonth())
-                {
-                    return 1;
-                }
-                else if (this.month < other.GetMonth())
-                {
-                    return -1;
-                }
-                else
-                {
-                    if (this.day > other.GetDay())
-                    {
-                        return 1;
-                    }
-                    else if (this.day < other.GetDay())
-                    {
-                        return -1;
-                    }
-                    else
-                    {
-                        return 0;
-                    }
-                }
+                return this.day - other.GetDay();
             }
         }
 
