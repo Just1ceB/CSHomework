@@ -74,7 +74,6 @@ namespace Prjcts
             Console.WriteLine(passport);
             Console.Write("The passport is ");
             Console.WriteLine(passport.IsValid(now) ? "valid" : "expired");
-            
         }
     }
 }
