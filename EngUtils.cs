@@ -9,104 +9,95 @@ namespace Prjcts
 {
     internal class EngUtils
     {
-        /*
-        This function turns lower case english letter to upper case english letter, if not a letter ignores
-        input: any char type symbol
-        output: char type symbol
-        */
+        /// <summary>
+        /// This function turns lower case english letter to upper case english letter, if not a letter ignores <br/>
+        /// </summary>
+        /// <param name="letter">Any symbol (Letter prefered)</param>
+        /// <returns>Lowered case english letter</returns>
+        /// <remarks>If symbol isn't english letter, ignores</remarks>
         public static char ToUpperCase(char letter)
         {
             return (letter >= 'a' && letter <= 'z') ? (char)(letter - 32) : letter;
         }
-
-        /*
-       This function turns upper case english letter to lower case english letter, if not a letter ignores
-       input: any char type symbol
-       output: char type symbol 
-       */
+        
+       ///<summary>
+       /// This function turns upper case english letter to lower case english letter
+       /// </summary>
+       /// <param name="letter">Any symbol (Letter preferred)</param>
+       /// <returns>Lowered case english letter</returns>
+       /// <remarks>If symbol isn't english letter, ignores</remarks>
         public static char ToLowerCase(char letter)
         {
             return (letter >= 'A' && letter <= 'Z') ? (char)(letter + 32) : letter;
         }
 
-        /*
-        This function turns every lower case english letter in a string to upper case english letter
-        input: string
-        output: string
-        */
-        public static string CapitalizeString(string S)
+       /// <summary>
+       /// This function turns every lower case english letter in a string to upper case english letter
+       /// </summary>
+       /// <param name="str">Any string</param>
+       /// <returns>Capitalized string </returns>
+       /// <remarks>Ignores not english letters</remarks>
+        public static string CapitalizeString(string str)
         {
-            string S2 = "";
-            for (int i = 0; i < S.Length; i++)
+            string capitalizedString = "";
+            for (int i = 0; i < str.Length; i++)
             {
-                S2 += EngUtils.ToUpperCase(S[i]);
+                capitalizedString += EngUtils.ToUpperCase(str[i]);
             }
-            return S2;
+            return capitalizedString;
         }
 
-        /*
-        This function turns every upper case english letter in a string to lower case english letter
-        input: string
-        output: string
-        */
-        public static string LowerString(string S)
+        /// <summary>
+        /// This function turns every upper case english letter in a string to lower case english letter
+        /// </summary>
+        /// <param name="str">Any string</param>
+        /// <returns>String in lower case</returns>
+        /// <remarks>Ignores not english letters</remarks>
+        public static string LowerString(string str)
         {
-            string S2 = "";
-            for (int i = 0; i < S.Length; i++)
+            string loweredString = "";
+            for (int i = 0; i < str.Length; i++)
             {
-                S2 += EngUtils.ToLowerCase(S[i]);
+                loweredString += EngUtils.ToLowerCase(str[i]);
             }
-            return S2;
+            return loweredString;
         }
 
-        /*
-        This function checks if certain symbol is english alphabit letter, and returns true or false statement about whethere it is or not
-        input: char type symbol
-        output: true / false bool statement
-        */
-        public static bool IsEngLetter(char letter)
+        /// <summary>
+        /// This function checks if certain symbol is english alphabet letter
+        /// </summary>
+        /// <param name="symbol">Any symbol to check</param>
+        /// <returns>Whether is a parameter a english letter or not</returns>
+        public static bool IsEngLetter(char symbol)
         {
-            return (letter >= 'A' && letter <= 'Z' || letter >= 'a' && letter <= 'z') ? true : false;
+            return (symbol >= 'A' && symbol <= 'Z' || symbol >= 'a' && symbol <= 'z') ? true : false;
         }
-       /*
-        This function checks if certain character is english upper case letter or not
-        input: any symbol / character
-        output: true / false value
-        */
-        public static bool IsUpperCase(char letter)
+        
+        /// <summary>
+        /// This function checks if certain character is english upper case letter or not
+        /// </summary>
+        /// <param name="symbol">Any symbol to check</param>
+        /// <returns>Whether is letter Eng uppercase letter</returns>
+        public static bool IsUpperCase(char symbol)
         {
-            if (letter >= 'A' && letter <= 'Z')
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return symbol >= 'A' && symbol <= 'Z' ? true : false;
         }
 
-        /*
-        This function checks if certain character is english lower case letter or not
-        input: any symbol / character
-        output: true / false value
-        */
-        public static bool IsLowerCase(char letter)
+        /// <summary>
+        /// This function checks if certain character is english lower case letter or not
+        /// </summary>
+        /// <param name="symbol">Any symbol to check</param>
+        /// <returns>Whether is letter Eng lowercase letter</returns>
+        public static bool IsLowerCase(char symbol)
         {
-            if (letter >= 'a' && letter <= 'z')
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return symbol >= 'a' && symbol <= 'z' ? true : false;
         }
 
-        /*
-        This function calculates the percentage of English words in the input string.
-        input: The input string to check.
-        output: Percentage (0 to 100) of English words.
-        */
+        ///<summary>
+        ///This function calculates the percentage of English words in the input string.
+        ///</summary>
+        ///<param name="input">The input string to check</param>
+        ///<returns>Percentage (0 to 100) of English words</returns>
         public static double GetEnglishWordPercentage(string input)
         {
             if (string.IsNullOrWhiteSpace(input))
@@ -124,7 +115,6 @@ namespace Prjcts
             int englishWordCount = words.Count(word => EnglishWords.Contains(word));
             return (double)englishWordCount / words.Count * 100.0;
         }
-
 
         // Static, sorted HashSet of common English words for fast lookup
         public static readonly HashSet<string> EnglishWords = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
