@@ -13,6 +13,12 @@ namespace Prjcts
         private int month;
         private int year;
 
+        /// <summary>
+        /// Creates new <c>Date</c> instance using input <b>parameters</b>
+        /// </summary>
+        /// <param name="day">Day value for the date</param>
+        /// <param name="month">Month value for the date</param>
+        /// <param name="year">Year value for the date</param>
         public Date(int day, int month, int year)
         {
             bool isLongMonth = month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 ||
@@ -52,19 +58,34 @@ namespace Prjcts
             }
         }
 
+        /// <summary>
+        /// Creates a copy of the <c>Date</c> isntance
+        /// </summary>
+        /// <param name="time"><c>Date</c> instance to copy</param> 
         public Date(Date time) : this(time.GetDay(), time.GetMonth(), time.GetYear())
         {
         }
 
+        /// <summary>
+        /// Creates <c>Date</c> instance using computers current date
+        /// </summary>
         public Date() : this(DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year)
         {
         }
 
+        /// <summary>
+        /// Gets gurrent <c>Date</c> instance day value
+        /// </summary>
+        /// <returns><c>this.day</c> value</returns>
         public int GetDay()
         {
             return this.day;
         }
 
+        /// <summary>
+        /// Sets <b>parameter</b> as current <c>Date</c> instance day value
+        /// </summary>
+        /// <param name="day">Day value to set</param>
         public void SetDay(int day)
         {
             bool isLongMonth = this.month == 1 || this.month == 3 || this.month == 5 || this.month == 7 ||
@@ -107,11 +128,19 @@ namespace Prjcts
             }
         }
 
+        /// <summary>
+        /// Gets the current <c>Date</c> instance month value
+        /// </summary>
+        /// <returns><c>this.month</c> value</returns>
         public int GetMonth()
         {
             return this.month;
         }
 
+        /// <summary>
+        /// Sets <b>parameter</b> as current <c>Date</c> instance month value
+        /// </summary>
+        /// <param name="month">Month value to set</param>
         public void SetMonth(int month)
         {
             if (month > 0 && month <= 12)
@@ -130,12 +159,19 @@ namespace Prjcts
                 }
             }
         }
-
+        /// <summary>
+        /// Gets the current <c>Date</c> instance year value
+        /// </summary>
+        /// <returns><c>this.year</c> value</returns>
         public int GetYear()
         {
             return this.year;
         }
 
+        /// <summary>
+        /// Sets <b>parameter</b> as year value for the current <c>Date</c> instance
+        /// </summary>
+        /// <param name="year">Year value to set</param>
         public void SetYear(int year)
         {
             if (!(this.month == 2 && this.day == 29 && year % 4 != 0))
@@ -144,12 +180,43 @@ namespace Prjcts
             }
         }
 
+        /// <summary>
+        /// Sets date for the current <c>Date</c> instance by 3 parameters
+        /// </summary>
+        /// <param name="day">Date day</param>
+        /// <param name="month">Date month</param>
+        /// <param name="year">Date year</param>
         public void SetDate(int day, int month, int year)
         {
             SetDay(day);
             SetMonth(month);
             SetYear(year);
         }
+
+        /// <summary>
+        /// Updates current <c>Date</c> instance to current date
+        /// </summary>
+        public void UpdateDate()
+        {
+            SetDay(DateTime.Now.Day);
+            SetMonth(DateTime.Now.Month);
+            SetYear(DateTime.Now.Year);
+        }
+
+        /// <summary>
+        /// Compares between current <c>Date</c> instance to another <c>Date</c> instance that comes as <b>parameter</b>
+        /// <example>
+        /// <code>
+        /// Console.Write(new Date(5,2,2026).CompareTo(new Date(1,12,2025))); // Will print positive number
+        /// Console.Write(new Date(1,12,2025).CompareTo(new Date(5,2,2026))); // Will print negative number
+        /// Console.Write(new Date(1,1,2026).CompareTo(new Date(5,2,2026))); // Will print 0
+        /// </code>
+        /// </example> 
+        /// </summary>
+        /// <param name="other">Other date</param>
+        /// <returns>0 if Dates are the same <br/>
+        /// Negative number if Date the function is operated on is earlier than <c>other</c> date <br/>
+        /// Positive number if Date the function is operated on is after the <c>other</c> date </returns>
 
         public int CompareTo(Date other)
         {
@@ -167,9 +234,15 @@ namespace Prjcts
             }
         }
 
+        /// <summary>
+        /// Makes printing <c>Date</c> instance to print the string with the date <br/>
+        /// <example>
+        /// Will print todays date in dd/mm/yyyy format<br/> Example: 26/02/2026
+        /// </example>
+        /// </summary>
         public override string ToString()
         {
-            return $"{this.day}/{this.month}/{this.year}";
+            return $"{this.day:00}/{this.month:00}/{this.year:0000}";
         }
 
         public static void UnitTest()
@@ -193,6 +266,8 @@ namespace Prjcts
 
             copyDate.SetDate(12, 12, 2222);
             Console.WriteLine(copyDate);
+
+            Console.WriteLine(new Date().CompareTo(new Date(1,3,2026)));
         }
     }
 }
