@@ -7,9 +7,6 @@ namespace Prjcts
     {
         static void Main(string[] args)
         {
-            //ClassPractice.UnitTest();
-            //VolleyBallPlayer.UnitTest();
-
             bool repeatChoosing = false;
 
             do
