@@ -74,7 +74,7 @@ namespace Prjcts
         /// <summary>
         /// Calculates between current <c>Point</c> instance to <b>parameter</b> <c>Point</c> instance
         /// </summary>
-        /// <param name="p">Other point</param>
+        /// <param name="p">Other <c>Point</c> instance</param>
         /// <returns>Distance between current <c>Point</c> and <b>parameter</b> <c>Point</c> instance</returns>
         public double Distance(Point p)
         {
@@ -84,13 +84,66 @@ namespace Prjcts
         /// <summary>
         /// Creates a point between current <c>Point</c> instance and <b>parameter</b> <c>Point</c> instance
         /// </summary>
-        /// <param name="p"></param>
+        /// <param name="p">Other <c>Point</c> instance</param>
         /// <returns>New <c>Point</c> instance that is between current and parameter <c>Point</c> instances</returns>
         public Point MiddlePoint(Point p)
         {
             Point middlePoint = new Point((this.x - p.GetX()) / 2, (this.y - p.GetY()) / 2);
             return middlePoint;
         }
+
+	/// <summary>
+	/// Calculates a slope between current <c>Point</c> instance and <b>parameter</b> <c>Point</c> instance 
+	/// </summary>
+	/// <param name="p">Other <c>Point</c> instance</param>
+	/// <returns>Slope between current <c>Point</c> instance and <b>parameter</b> <c>Point</c> instance </returns>
+	public double Slope(Point p)
+	{
+	    return (p.GetY() - this.y) / (p.GetX() - this.x);
+	}
+
+	/// <summary>
+	/// Finds out which <c>Point</c> instance is farthest from the 0,0 coordinates (origin) from array of <c>Point</c> instances
+	/// </summary>
+	/// <param name="points">Array of <c>Point</c> instances to find out which is farthest from the origin (center dot (0,0)) </param>
+	public static Point FarthestPoint(Point[] points)
+	{
+	    double largestDistance, currentDistance; 
+	    int lrgDistIndex;
+	    Point origin = new Point();
+	    
+	    largestDistance = points[0].Distance(origin);
+	    lrgDistIndex = 0;
+	    for (int i = 1; i < points.Length; i++)
+	    {
+		currentDistance = points[i].Distance(origin);
+		if (currentDistance > largestDistance)
+		{
+		    largestDistance = currentDistance;
+		    lrgDistIndex = i;
+		}
+	    }
+
+	    return points[lrgDistIndex];
+	}
+
+	/// <summary>
+	/// Creates array of <c>Point</c> instances that are in the middle of each <c>Point</c> instance in <b>parameter</b> array<br/>
+	/// and origin (0,0 coords)
+	/// </summary>
+	/// <param name="points">Array of <c>Point</c> instances to find middle of them and origin (0,0 coords)</param>
+	public static Point[] HalfPoints(Point[] points)
+	{
+	    Point[] middlePoints = new Point[points.Length];
+	    Point origin = new Point();
+
+	    for (int i = 0; i < points.Length; i++)
+	    {
+		middlePoints[i] = points[i].MiddlePoint(origin);	
+	    }
+
+	    return middlePoints;
+	}
 
         /// <summary>
         /// Creates a copy of current <c>Point</c> instance
@@ -129,6 +182,20 @@ namespace Prjcts
             Console.WriteLine($"Middle point is: {point3}");
 
             Point point4 = new Point(point);
+
+	    Console.WriteLine($"The slop between point {point} and {point2} is {point2.Slope(point)}");
+	    
+	    Point[] points = {point, point2, point3};
+
+	    Console.WriteLine($"Farthest point from origin (( 0, 0 ) coords) is {Point.FarthestPoint(points)}. (comparing {point},{point2},{point3}");
+
+	    Point[] halfPoints = Point.HalfPoints(points);
+	    Console.Write($"Halfed points are: [");
+	    for (int i = 0 ; i < points.Length; i++)
+	    {
+		Console.Write(halfPoints[i].ToString());
+	    }
+	    Console.Write("]");
         }
     }
 }

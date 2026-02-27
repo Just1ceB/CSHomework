@@ -11,6 +11,8 @@ namespace Prjcts
 
             do
             {
+		repeatChoosing = false;
+
                 Console.Write("1 - Point\n2 - Dates\n3 - Rectangle\n4 - Rational\n5 - Passport\n0 - Close\nChoose: ");
 
                 switch (Console.ReadKey().KeyChar)
