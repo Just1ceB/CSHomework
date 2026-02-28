@@ -63,6 +63,27 @@ namespace Prjcts
 
             return rnd.Next(min, max);
         }
+	
+	/// <summary>
+	/// This function will count amount of digits in <c>double</c> variable
+	/// </summary>
+	/// <param name="number">Any <c>double</c> type variable</param>
+	/// <returns>Returns amount of digits in <b>parameter</b> <c>double</c> variable</returns>
+	public static int FloatDigitAmount(double number)
+	{
+	    string strNum = number.ToString();
+	    bool isRational = false;
+	    
+	    for (int i = 0; i < strNum.Length; i++)
+	    {
+		if (strNum[i] == '.')
+		{
+		    isRational = true;
+		}
+	    }
+
+	    return isRational ? strNum.Length - 1 : strNum.Length;
+	}
         
         /// <summary>
         /// This function generates array with random numbers
