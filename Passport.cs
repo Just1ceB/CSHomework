@@ -15,13 +15,10 @@ namespace Prjcts
 
         /// <summary>
         /// Creates a <c>Passport</c> instance with <b>parameters:</b>
-        /// <br/><b>name - </b>Name on the passport<br/>
-        /// <b>number - </b>Number of the passport<br/>
-        /// <b>expiryDate - </b>Expiration date of the passport
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="number"></param>
-        /// <param name="expiryDate"></param>
+        /// <param name="name">Name on the passport</param>
+        /// <param name="number">Number of the passport</param>
+        /// <param name="expiryDate">Expiration date of the passport</param>
         public Passport(string name, int number, Date expiryDate)
         {
             this.name = name;

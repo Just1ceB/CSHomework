@@ -24,7 +24,7 @@ namespace Prjcts
             bool isLongMonth = month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 ||
                                month == 12;
             bool isFebruar = month == 2;
-            bool isLongYear = year % 4 == 0;
+            bool isLeapYear = year % 4 == 0;
             if (!isFebruar)
             {
                 if (isLongMonth)
@@ -38,7 +38,7 @@ namespace Prjcts
             }
             else
             {
-                if (isLongYear)
+                if (isLeapYear)
                 {
                     this.day = (day <= 29 && day > 0) ? day : 0;
                 }
@@ -91,7 +91,7 @@ namespace Prjcts
             bool isLongMonth = this.month == 1 || this.month == 3 || this.month == 5 || this.month == 7 ||
                                this.month == 8 || this.month == 10 || this.month == 12;
             bool isFebruar = this.month == 2;
-            bool isLongYear = this.year % 4 == 0;
+            bool isLeapYear = IsLeapYear();
             if (!isFebruar)
             {
                 if (isLongMonth)
@@ -111,7 +111,7 @@ namespace Prjcts
             }
             else
             {
-                if (isLongYear)
+                if (isLeapYear)
                 {
                     if (day <= 29 && day > 0)
                     {
@@ -203,13 +203,33 @@ namespace Prjcts
             SetYear(DateTime.Now.Year);
         }
 
+	/// <summary>
+	/// Sorts an array of dates by bubble sort method
+	/// </summary>
+	public static void DateSort(Date[] dates)
+	{
+	    Date tmp = new Date();
+	    for (int i = 0; i < dates.Length; i++)
+	    {
+		for (int j = 0; j < dates.Length - 1; j++)
+		{
+		    if (dates[j].CompareTo(dates[j+1]) > 0)
+		    {
+		        tmp = dates[j + 1];
+		        dates[j + 1] = dates[j];
+		        dates[j] = tmp;
+		    }
+		}
+	    }
+	}
+
         /// <summary>
         /// Compares between current <c>Date</c> instance to another <c>Date</c> instance that comes as <b>parameter</b>
         /// <example>
         /// <code>
         /// Console.Write(new Date(5,2,2026).CompareTo(new Date(1,12,2025))); // Will print positive number
         /// Console.Write(new Date(1,12,2025).CompareTo(new Date(5,2,2026))); // Will print negative number
-        /// Console.Write(new Date(1,1,2026).CompareTo(new Date(5,2,2026))); // Will print 0
+        /// Console.Write(new Date(1,1,2026).CompareTo(new Date(1,1,2026))); // Will print 0
         /// </code>
         /// </example> 
         /// </summary>
@@ -217,7 +237,6 @@ namespace Prjcts
         /// <returns>0 if Dates are the same <br/>
         /// Negative number if Date the function is operated on is earlier than <c>other</c> date <br/>
         /// Positive number if Date the function is operated on is after the <c>other</c> date </returns>
-
         public int CompareTo(Date other)
         {
             if (this.year != other.GetYear())
@@ -233,6 +252,15 @@ namespace Prjcts
                 return this.day - other.GetDay();
             }
         }
+	
+	/// <summary>
+	/// Checks if the current <c>Date</c> instance year is a leap year
+	/// </summary>
+	/// <returns> Whether is current <c>Date</c> instance year is a leap year </returns>
+	public bool IsLeapYear()
+	{
+	    return this.year % 4 == 0 ? true : false;
+	}
 
         /// <summary>
         /// Makes printing <c>Date</c> instance to print the string with the date <br/>
@@ -259,6 +287,8 @@ namespace Prjcts
             randomDate.SetMonth(7);
             randomDate.SetYear(2012);
 
+	    Date otherDate = new Date(5, 7, 2013);
+
             Console.WriteLine(randomDate);
 
             Date copyDate = new Date(randomDate);
@@ -267,7 +297,37 @@ namespace Prjcts
             copyDate.SetDate(12, 12, 2222);
             Console.WriteLine(copyDate);
 
-            Console.WriteLine(new Date().CompareTo(new Date(1,3,2026)));
+
+            Console.WriteLine(new Date().CompareTo(new Date(2,3,2026)) > 0 ? "Before current date" : "After current Date");
+
+	    
+            Console.WriteLine(new Date(28, 2, 2026).CompareTo(new Date(5,7,2013)) > 0 ? "Before current date" : "After current Date");
+
+	    Date[] dates = {currentDate, randomDate, copyDate, otherDate};
+	    
+
+	    for (int i = 0; i < dates.Length; i++)
+	    {
+		Console.Write($"{dates[i]} ,");
+	    }
+	    Console.Write("]");
+	    
+	    for (int i = 0; i < dates.Length; i++)
+	    {
+		Console.Write($"{dates[i]} ,");
+	    }
+	    Console.Write("]");
+
+	    Console.WriteLine(otherDate);
+	    DateSort(dates);
+
+	    Console.Write("[");
+
+	    for (int i = 0; i < dates.Length; i++)
+	    {
+		Console.Write($"{dates[i]} ,");
+	    }
+	    Console.Write("]");
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Prjcts
         private int y; // Denominator
 
         /// <summary>
-        /// Creates rational number with <b>parameter X</b> as Numerator and <b>parameter Y</b> as Denominator
+        /// Creates <c>Rational</c> number instance with <b>parameter X</b> as Numerator and <b>parameter Y</b> as Denominator
         /// </summary>
         /// <param name="x">Numerator</param>
         /// <param name="y">Denominator</param>
@@ -22,6 +22,34 @@ namespace Prjcts
             this.x = x;
             this.y = y != 0 ? y : 1;
         }
+
+	/// <summary>
+	/// Creates <c>Rational</c> number intance with <c>double</c> type variable that is a <b>parameter</b>
+	/// </summary>
+	/// <param name="number">Double number to turn into rational number</param>
+	public Rational(double number) // TODO Needs improving in logic
+	{
+	    int numLength = Funcs.FloatDigitAmount(number);
+	    bool done = false;
+
+	    for (int i = 2; i < 100000 * numLength && !done; i++)
+	    {
+		if (number * i % 1 == 0)
+		{
+		    this.y = i;
+		    this.x = (int)(number * i);
+		    done = true;
+		}
+	    }
+
+	    if (this.x == 0 && this.y == 0)
+	    {
+		this.y = 1;
+		this.x = (int)number;
+	    }
+
+	    Reduct();
+	}
 
         /// <summary>
         /// Creates <c>Rational</c> instance with <b>1</b> as numerator and as denominator
@@ -43,6 +71,11 @@ namespace Prjcts
             Rational copy = new Rational(this.x, this.y);
             return copy;
         }
+
+	public double GetDecimal()
+	{
+	    return (double)this.x / (double)this.y;
+	}
 
         /// <summary>
         /// Gets value of current <c>Rational</c> instance numerator
@@ -88,7 +121,7 @@ namespace Prjcts
         /// </summary>
         /// <param name="num">Other <c>Rational</c> instance</param>
         /// <returns>Whether the numbers are equal or not</returns>
-        bool IsEqual(Rational num)
+        public bool IsEqual(Rational num)
         {
             return this.x * num.GetDenom() == this.y * num.GetNumerator();
         }
@@ -124,16 +157,7 @@ namespace Prjcts
         public Rational Add(Rational num)
         {
             Rational result = new Rational(this.x * num.GetDenom() + num.GetNumerator() * this.y, this.y * num.GetDenom());
-            for (int i = result.GetDenom(); i > 0; i--)
-            {
-                if (result.GetDenom() % i == 0 && result.GetNumerator() % i == 0)
-                {
-                    result.SetNumerator(result.GetNumerator() / i);
-                    result.SetDenom(result.GetDenom() / i);
-                    return result;
-                }
-            }
-
+	    result.Reduct();
             return result;
         }
 
@@ -142,21 +166,32 @@ namespace Prjcts
         /// </summary>
         /// <param name="num">Other <c>Rational</c> instance to take from current</param>
         /// <returns>Difference between the two</returns>
-        public Rational Take(Rational num)
+        public Rational Subtract(Rational num)
         {
             Rational result = new Rational(this.x * num.GetDenom() - num.GetNumerator() * this.y, this.y * num.GetDenom());
-            for (int i = result.GetDenom(); i > 0; i--)
-            {
-                if (result.GetDenom() % i == 0 && result.GetNumerator() % i == 0)
-                {
-                    result.SetNumerator(result.GetNumerator() / i);
-                    result.SetDenom(result.GetDenom() / i);
-                    return result;
-                }
-            }
-
+	    result.Reduct();
             return result;
         }
+	
+	/// <summary>
+	/// Reduces current <c>Rational</c> number <br/>
+	/// <example>
+	/// Example: 3/9 turns into 1/3
+	/// </example>
+	/// </summary>
+	public void Reduct()
+	{
+	    bool done = false;
+            for (int i = this.y; i > 0 && !done; i--)
+            {
+                if (this.y % i == 0 && this.x % i == 0)
+                {
+                    this.x = (this.x / i);
+                    this.y = (this.y / i);
+		    done = true;
+                }
+            }
+	}
 
         /// <summary>
         /// Makes printing <c>Rational</c> instance to print a string in:<br/>
@@ -190,7 +225,15 @@ namespace Prjcts
 
 
             Console.WriteLine($"The sum of {bnum} and {cnum} is {bnum.Add(cnum)}");
-            Console.WriteLine($"The difference between {bnum} and {cnum} is {bnum.Take(cnum)}");
+            Console.WriteLine($"The difference between {bnum} and {cnum} is {bnum.Subtract(cnum)}");
+	    
+	    Console.WriteLine($"The rational from double num is {new Rational(17)}"); 
+
+	    Console.WriteLine($"The rational from double from 14.534 is {new Rational(14.534)}");
+
+	    Console.WriteLine(bnum.GetDecimal());
+
+	    Console.WriteLine(cnum.GetDecimal());
         }
     }
 }
