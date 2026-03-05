@@ -27,28 +27,10 @@ namespace Prjcts
 	/// Creates <c>Rational</c> number intance with <c>double</c> type variable that is a <b>parameter</b>
 	/// </summary>
 	/// <param name="number">Double number to turn into rational number</param>
-	public Rational(double number) // TODO Needs improving in logic
+	public Rational(int number)
 	{
-	    int numLength = Funcs.FloatDigitAmount(number);
-	    bool done = false;
-
-	    for (int i = 2; i < 100000 * numLength && !done; i++)
-	    {
-		if (number * i % 1 == 0)
-		{
-		    this.y = i;
-		    this.x = (int)(number * i);
-		    done = true;
-		}
-	    }
-
-	    if (this.x == 0 && this.y == 0)
-	    {
-		this.y = 1;
-		this.x = (int)number;
-	    }
-
-	    Reduct();
+	    this.x = (int)number;
+	    this.y = 1;
 	}
 
         /// <summary>
@@ -229,7 +211,7 @@ namespace Prjcts
 	    
 	    Console.WriteLine($"The rational from double num is {new Rational(17)}"); 
 
-	    Console.WriteLine($"The rational from double from 14.534 is {new Rational(14.534)}");
+	    Console.WriteLine($"The rational from double from 14 is {new Rational(14)}");
 
 	    Console.WriteLine(bnum.GetDecimal());
 
