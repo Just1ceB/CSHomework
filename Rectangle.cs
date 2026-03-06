@@ -35,6 +35,24 @@ namespace Prjcts
             this.topRight = new Point(this.bottomLeft.GetX() + width, this.bottomLeft.GetY() + height);
         }
 
+	/// <summary>
+	/// Get's current <c>Rectangle</c> instance bottom left point
+	/// </summary>
+	/// <returns>Bottom left point of current <c>Rectangle</c> instance</returns>
+	public Point GetBottomLeft()
+	{
+	    return this.bottomLeft;
+	}
+
+	/// <summary>
+	/// Get's current <c>Rectangle</c> instance top right point
+	/// </summary>
+	/// <returns>Top right point of current <c>Rectangle</c> instance</returns>
+	public Point GetTopRight()
+	{
+	    return this.topRight;
+	}
+
         /// <summary>
         /// Calculates width of the current <c>Rectangle</c> instance
         /// </summary>
@@ -84,6 +102,24 @@ namespace Prjcts
             this.topRight.SetY(this.topRight.GetY() + deltaY);
         }
 
+	/// <summary>
+	/// Checks if <b>parameter</b> <c>Point</c> instance is within borders of current <c>Rectangle</c> instance
+	/// </summary>
+	/// <returns>Whether is <b>parameter</b> point is within current <c>Rectangle</c></returns>
+	public bool PointIsIn(Point point)
+	{
+	    return point.GetY() >= this.bottomLeft.GetY() && point.GetY() <= this.topRight.GetY() && point.GetX() >= this.bottomLeft.GetX() && point.GetX() <= this.topRight.GetX();
+	}
+
+	/// <summary>
+	/// Calculates distance between current <c>Rectangle</c> instance middle point to <b>Parameter</b> <c>Rectangle</c> instance middle point
+	/// </summary>
+	/// <returns>Distance between two <c>Rectangle</c> instances middle points</returns>
+	public double Distance(Rectangle other)
+	{
+	    return this.bottomLeft.MiddlePoint(this.topRight).Distance(other.GetBottomLeft().MiddlePoint(other.GetTopRight()));
+	}
+
         /// <summary>
         /// Makes printing <c>Rectangle</c> instance to print a string with <c>Rectangle</c> instance info as: <br/>
         /// <example>
@@ -113,6 +149,16 @@ namespace Prjcts
             Console.WriteLine(rect);
 
             rect.Move(10, 0);
+
+	    Console.WriteLine(rect.PointIsIn(point2) ? $"{point2} is in rectangle" : $"{point2} Not in rectangle");
+	    Console.WriteLine(rect.PointIsIn(new Point(1,1)) ? $"{new Point(1,1)} is in rectangle" : $"{new Point(1,1)} Not in rectangle");
+		
+	    Console.WriteLine(rect);
+	    Rectangle rect2 = new Rectangle(new Point(25,10), new Point(40, 20));
+
+	    Console.WriteLine(rect2);
+	    
+	    Console.WriteLine(rect.Distance(rect2));
         }
     }
 }

@@ -88,7 +88,7 @@ namespace Prjcts
         /// <returns>New <c>Point</c> instance that is between current and parameter <c>Point</c> instances</returns>
         public Point MiddlePoint(Point p)
         {
-            Point middlePoint = new Point((this.x - p.GetX()) / 2, (this.y - p.GetY()) / 2);
+            Point middlePoint = new Point((this.x + p.GetX()) / 2, (this.y + p.GetY()) / 2);
             return middlePoint;
         }
 
