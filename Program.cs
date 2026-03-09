@@ -13,7 +13,7 @@ namespace Prjcts
             {
 		        repeatChoosing = false;
 
-                Console.Write("1 - Point\n2 - Dates\n3 - Rectangle\n4 - Rational\n5 - Passport\n0 - Close\nChoose: ");
+                Console.Write("1 - Point\n2 - Dates\n3 - Rectangle\n4 - Rational\n5 - Passport\n6 - Traveler\n0 - Close\nChoose: ");
 
                 switch (Console.ReadKey().KeyChar)
                 {
@@ -41,6 +41,10 @@ namespace Prjcts
                         Console.WriteLine();
                         Passport.UnitTest();
                         break;
+		    case '6':
+			Console.WriteLine();
+			Traveler.UnitTest();
+			break;
                     default:
                         Console.WriteLine();
                         Console.WriteLine("Error");
