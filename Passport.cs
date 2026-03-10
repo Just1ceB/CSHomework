@@ -81,11 +81,43 @@ namespace Prjcts
         /// <summary>
         /// Checks if current expiry <c>Date</c> is not past <c>Date</c> instance that inputted as <b>parameter</b>
         /// </summary>
-        /// <param name="dateChecked"></param>
+        /// <param name="dateChecked">Date to check if passport is valid relatively to date</param>
         /// <returns>Whether is <c>Passport</c> expired</returns>
         public bool IsValid(Date dateChecked)
         {
-            return this.expiryDate.CompareTo(dateChecked) > 0 ? true : false;
+            return this.expiryDate.CompareTo(dateChecked) >= 0 ? true : false;
+        }
+
+        /// <summary>
+        /// Checks which <c>Passport</c> instances in <b>parameter</b> <c>Passport</c> instances array <br/>
+        /// are expired and which are not
+        /// </summary>
+        /// <param name="passports">Array of <c>Passport</c> instances to check</param>
+        /// <returns>Array of expired passports</returns>
+        public static Passport[] ExpiryCheck(Passport[] passports)
+        {
+            Date today = new Date();
+            int notValidPassports = 0;
+            for (int i = 0; i < passports.Length; i++)
+            {
+                if (passports[i].IsValid(today) == false)
+                {
+                    notValidPassports++;
+                }
+            }
+
+            Passport[] expiredPassports = new Passport[notValidPassports];
+
+            for (int i = 0, j = 0; i < passports.Length; i++)
+            {
+                if (passports[i].IsValid(today) == false)
+                {
+                    expiredPassports[j] = passports[i];
+                    j++;
+                }
+            }
+
+            return expiredPassports;
         }
 
         /// <summary>
@@ -111,14 +143,31 @@ namespace Prjcts
             Console.WriteLine(passport);
             Console.Write("The passport is ");
             Console.WriteLine(passport.IsValid(now) ? "valid" : "expired");
-            
+
             expDate.SetDate(29, 1, 2022);
-            
+
             passport.SetExpiryDate(expDate);
-            
+
             Console.WriteLine(passport);
             Console.Write("The passport is ");
             Console.WriteLine(passport.IsValid(now) ? "valid" : "expired");
+
+            Passport passOne = new Passport("Name", 1234, new Date(15, 6, 2021));
+            Passport passTwo = new Passport("Name", 1234, new Date(15, 6, 2020));
+            Passport passThree = new Passport("Name", 1234, new Date(15, 6, 2027));
+            Passport passFour = new Passport("Name", 1234, new Date(7, 5, 2026));
+            Passport passFive = new Passport("Name", 1234, new Date(25, 12, 2024));
+            Passport passSix = new Passport("Name", 1234, new Date(25, 12, 2029));
+
+            Passport[] passports = {passport, passOne, passTwo, passThree, passFour, passFive, passSix};
+
+            Passport[] expiredPassports = Passport.ExpiryCheck(passports);
+
+            Console.WriteLine("Expired Passports:");
+            for(int i = 0; i < expiredPassports.Length; i++)
+            {
+                Console.WriteLine(expiredPassports[i]);
+            }
         }
     }
 }
