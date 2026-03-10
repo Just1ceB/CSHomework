@@ -259,7 +259,7 @@ namespace Prjcts
         /// <returns> Whether is current <c>Date</c> instance year is a leap year </returns>
         public bool IsLeapYear()
         {
-            return this.year % 4 == 0 ? true : false;
+            return this.year % 4 == 0 && this.year % 100 != 0 || this.year % 400 == 0;
         }
 
         /// <summary>
@@ -320,6 +320,15 @@ namespace Prjcts
 
             Console.WriteLine(otherDate);
             DateSort(dates);
+
+            Date datetest1 = new Date(2, 1, 2024);
+            Date datetest2 = new Date(2, 1, 1900);
+            Date datetest3 = new Date(2, 1, 2000);
+            Console.WriteLine("Leap year test:");
+            Console.WriteLine($"{datetest1}:{datetest1.IsLeapYear()}");
+            Console.WriteLine($"{datetest2}:{datetest2.IsLeapYear()}");
+            Console.WriteLine($"{datetest3}:{datetest3.IsLeapYear()}");
+            Console.WriteLine("---------");
 
             Console.Write("[");
 
