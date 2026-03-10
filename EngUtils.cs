@@ -19,24 +19,24 @@ namespace Prjcts
         {
             return (letter >= 'a' && letter <= 'z') ? (char)(letter - 32) : letter;
         }
-        
-       ///<summary>
-       /// This function turns upper case english letter to lower case english letter
-       /// </summary>
-       /// <param name="letter">Any symbol (Letter preferred)</param>
-       /// <returns>Lowered case english letter</returns>
-       /// <remarks>If symbol isn't english letter, ignores</remarks>
+
+        ///<summary>
+        /// This function turns upper case english letter to lower case english letter
+        /// </summary>
+        /// <param name="letter">Any symbol (Letter preferred)</param>
+        /// <returns>Lowered case english letter</returns>
+        /// <remarks>If symbol isn't english letter, ignores</remarks>
         public static char ToLowerCase(char letter)
         {
             return (letter >= 'A' && letter <= 'Z') ? (char)(letter + 32) : letter;
         }
 
-       /// <summary>
-       /// This function turns every lower case english letter in a string to upper case english letter
-       /// </summary>
-       /// <param name="str">Any string</param>
-       /// <returns>Capitalized string </returns>
-       /// <remarks>Ignores not english letters</remarks>
+        /// <summary>
+        /// This function turns every lower case english letter in a string to upper case english letter
+        /// </summary>
+        /// <param name="str">Any string</param>
+        /// <returns>Capitalized string </returns>
+        /// <remarks>Ignores not english letters</remarks>
         public static string CapitalizeString(string str)
         {
             string capitalizedString = "";
@@ -72,7 +72,7 @@ namespace Prjcts
         {
             return (symbol >= 'A' && symbol <= 'Z' || symbol >= 'a' && symbol <= 'z') ? true : false;
         }
-        
+
         /// <summary>
         /// This function checks if certain character is english upper case letter or not
         /// </summary>
@@ -105,9 +105,9 @@ namespace Prjcts
 
             // Use regex to extract words (alphanumeric, ignoring punctuation)
             List<string> words = Regex.Matches(input.ToLower(), @"\b[a-z]+\b")
-                             .Cast<Match>()
-                             .Select(m => m.Value)
-                             .ToList();
+                .Cast<Match>()
+                .Select(m => m.Value)
+                .ToList();
 
             if (words.Count == 0)
                 return 0.0;

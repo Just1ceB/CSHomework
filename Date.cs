@@ -22,7 +22,7 @@ namespace Prjcts
         public Date(int day, int month, int year)
         {
             bool isLongMonth = month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 ||
-                               month == 12;
+                month == 12;
             bool isFebruar = month == 2;
             bool isLeapYear = year % 4 == 0;
             if (!isFebruar)
@@ -89,7 +89,7 @@ namespace Prjcts
         public void SetDay(int day)
         {
             bool isLongMonth = this.month == 1 || this.month == 3 || this.month == 5 || this.month == 7 ||
-                               this.month == 8 || this.month == 10 || this.month == 12;
+                this.month == 8 || this.month == 10 || this.month == 12;
             bool isFebruar = this.month == 2;
             bool isLeapYear = IsLeapYear();
             if (!isFebruar)
@@ -203,25 +203,25 @@ namespace Prjcts
             SetYear(DateTime.Now.Year);
         }
 
-	/// <summary>
-	/// Sorts an array of dates by bubble sort method
-	/// </summary>
-	public static void DateSort(Date[] dates)
-	{
-	    Date tmp = new Date();
-	    for (int i = 0; i < dates.Length; i++)
-	    {
-		for (int j = 0; j < dates.Length - 1; j++)
-		{
-		    if (dates[j].CompareTo(dates[j+1]) > 0)
-		    {
-		        tmp = dates[j + 1];
-		        dates[j + 1] = dates[j];
-		        dates[j] = tmp;
-		    }
-		}
-	    }
-	}
+        /// <summary>
+        /// Sorts an array of dates by bubble sort method
+        /// </summary>
+        public static void DateSort(Date[] dates)
+        {
+            Date tmp = new Date();
+            for (int i = 0; i < dates.Length; i++)
+            {
+                for (int j = 0; j < dates.Length - 1; j++)
+                {
+                    if (dates[j].CompareTo(dates[j+1]) > 0)
+                    {
+                        tmp = dates[j + 1];
+                        dates[j + 1] = dates[j];
+                        dates[j] = tmp;
+                    }
+                }
+            }
+        }
 
         /// <summary>
         /// Compares between current <c>Date</c> instance to another <c>Date</c> instance that comes as <b>parameter</b>
@@ -252,15 +252,15 @@ namespace Prjcts
                 return this.day - other.GetDay();
             }
         }
-	
-	/// <summary>
-	/// Checks if the current <c>Date</c> instance year is a leap year
-	/// </summary>
-	/// <returns> Whether is current <c>Date</c> instance year is a leap year </returns>
-	public bool IsLeapYear()
-	{
-	    return this.year % 4 == 0 ? true : false;
-	}
+
+        /// <summary>
+        /// Checks if the current <c>Date</c> instance year is a leap year
+        /// </summary>
+        /// <returns> Whether is current <c>Date</c> instance year is a leap year </returns>
+        public bool IsLeapYear()
+        {
+            return this.year % 4 == 0 ? true : false;
+        }
 
         /// <summary>
         /// Makes printing <c>Date</c> instance to print the string with the date <br/>
@@ -287,7 +287,7 @@ namespace Prjcts
             randomDate.SetMonth(7);
             randomDate.SetYear(2012);
 
-	    Date otherDate = new Date(5, 7, 2013);
+            Date otherDate = new Date(5, 7, 2013);
 
             Console.WriteLine(randomDate);
 
@@ -300,34 +300,34 @@ namespace Prjcts
 
             Console.WriteLine(new Date().CompareTo(new Date(2,3,2026)) > 0 ? "Before current date" : "After current Date");
 
-	    
+
             Console.WriteLine(new Date(28, 2, 2026).CompareTo(new Date(5,7,2013)) > 0 ? "Before current date" : "After current Date");
 
-	    Date[] dates = {currentDate, randomDate, copyDate, otherDate};
-	    
+            Date[] dates = {currentDate, randomDate, copyDate, otherDate};
 
-	    for (int i = 0; i < dates.Length; i++)
-	    {
-		Console.Write($"{dates[i]} ,");
-	    }
-	    Console.Write("]");
-	    
-	    for (int i = 0; i < dates.Length; i++)
-	    {
-		Console.Write($"{dates[i]} ,");
-	    }
-	    Console.Write("]");
 
-	    Console.WriteLine(otherDate);
-	    DateSort(dates);
+            for (int i = 0; i < dates.Length; i++)
+            {
+                Console.Write($"{dates[i]} ,");
+            }
+            Console.Write("]");
 
-	    Console.Write("[");
+            for (int i = 0; i < dates.Length; i++)
+            {
+                Console.Write($"{dates[i]} ,");
+            }
+            Console.Write("]");
 
-	    for (int i = 0; i < dates.Length; i++)
-	    {
-		Console.Write($"{dates[i]} ,");
-	    }
-	    Console.Write("]");
+            Console.WriteLine(otherDate);
+            DateSort(dates);
+
+            Console.Write("[");
+
+            for (int i = 0; i < dates.Length; i++)
+            {
+                Console.Write($"{dates[i]} ,");
+            }
+            Console.Write("]");
         }
     }
 }

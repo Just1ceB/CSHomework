@@ -23,15 +23,15 @@ namespace Prjcts
             this.y = y != 0 ? y : 1;
         }
 
-	/// <summary>
-	/// Creates <c>Rational</c> number intance with <c>double</c> type variable that is a <b>parameter</b>
-	/// </summary>
-	/// <param name="number">Double number to turn into rational number</param>
-	public Rational(int number)
-	{
-	    this.x = (int)number;
-	    this.y = 1;
-	}
+        /// <summary>
+        /// Creates <c>Rational</c> number intance with <c>double</c> type variable that is a <b>parameter</b>
+        /// </summary>
+        /// <param name="number">Double number to turn into rational number</param>
+        public Rational(int number)
+        {
+            this.x = (int)number;
+            this.y = 1;
+        }
 
         /// <summary>
         /// Creates <c>Rational</c> instance with <b>1</b> as numerator and as denominator
@@ -54,10 +54,10 @@ namespace Prjcts
             return copy;
         }
 
-	public double GetDecimal()
-	{
-	    return (double)this.x / (double)this.y;
-	}
+        public double GetDecimal()
+        {
+            return (double)this.x / (double)this.y;
+        }
 
         /// <summary>
         /// Gets value of current <c>Rational</c> instance numerator
@@ -139,7 +139,7 @@ namespace Prjcts
         public Rational Add(Rational num)
         {
             Rational result = new Rational(this.x * num.GetDenom() + num.GetNumerator() * this.y, this.y * num.GetDenom());
-	    result.Reduct();
+            result.Reduct();
             return result;
         }
 
@@ -151,29 +151,29 @@ namespace Prjcts
         public Rational Subtract(Rational num)
         {
             Rational result = new Rational(this.x * num.GetDenom() - num.GetNumerator() * this.y, this.y * num.GetDenom());
-	    result.Reduct();
+            result.Reduct();
             return result;
         }
-	
-	/// <summary>
-	/// Reduces current <c>Rational</c> number <br/>
-	/// <example>
-	/// Example: 3/9 turns into 1/3
-	/// </example>
-	/// </summary>
-	public void Reduct()
-	{
-	    bool done = false;
+
+        /// <summary>
+        /// Reduces current <c>Rational</c> number <br/>
+        /// <example>
+        /// Example: 3/9 turns into 1/3
+        /// </example>
+        /// </summary>
+        public void Reduct()
+        {
+            bool done = false;
             for (int i = this.y; i > 0 && !done; i--)
             {
                 if (this.y % i == 0 && this.x % i == 0)
                 {
                     this.x = (this.x / i);
                     this.y = (this.y / i);
-		    done = true;
+                    done = true;
                 }
             }
-	}
+        }
 
         /// <summary>
         /// Makes printing <c>Rational</c> instance to print a string in:<br/>
@@ -208,14 +208,14 @@ namespace Prjcts
 
             Console.WriteLine($"The sum of {bnum} and {cnum} is {bnum.Add(cnum)}");
             Console.WriteLine($"The difference between {bnum} and {cnum} is {bnum.Subtract(cnum)}");
-	    
-	    Console.WriteLine($"The rational from double num is {new Rational(17)}"); 
 
-	    Console.WriteLine($"The rational from double from 14 is {new Rational(14)}");
+            Console.WriteLine($"The rational from double num is {new Rational(17)}"); 
 
-	    Console.WriteLine(bnum.GetDecimal());
+            Console.WriteLine($"The rational from double from 14 is {new Rational(14)}");
 
-	    Console.WriteLine(cnum.GetDecimal());
+            Console.WriteLine(bnum.GetDecimal());
+
+            Console.WriteLine(cnum.GetDecimal());
         }
     }
 }

@@ -46,7 +46,7 @@ namespace Prjcts
 
             return false; // Function doesn't work if removed but rudement in general
         }
-        
+
         /// <summary>
         /// This function will get minimal and maximal number to generate a number in their bounds
         /// </summary>
@@ -63,28 +63,28 @@ namespace Prjcts
 
             return rnd.Next(min, max);
         }
-	
-	/// <summary>
-	/// This function will count amount of digits in <c>double</c> variable
-	/// </summary>
-	/// <param name="number">Any <c>double</c> type variable</param>
-	/// <returns>Returns amount of digits in <b>parameter</b> <c>double</c> variable</returns>
-	public static int FloatDigitAmount(double number)
-	{
-	    string strNum = number.ToString();
-	    bool isRational = false;
-	    
-	    for (int i = 0; i < strNum.Length; i++)
-	    {
-		if (strNum[i] == '.')
-		{
-		    isRational = true;
-		}
-	    }
 
-	    return isRational ? strNum.Length - 1 : strNum.Length;
-	}
-        
+        /// <summary>
+        /// This function will count amount of digits in <c>double</c> variable
+        /// </summary>
+        /// <param name="number">Any <c>double</c> type variable</param>
+        /// <returns>Returns amount of digits in <b>parameter</b> <c>double</c> variable</returns>
+        public static int FloatDigitAmount(double number)
+        {
+            string strNum = number.ToString();
+            bool isRational = false;
+
+            for (int i = 0; i < strNum.Length; i++)
+            {
+                if (strNum[i] == '.')
+                {
+                    isRational = true;
+                }
+            }
+
+            return isRational ? strNum.Length - 1 : strNum.Length;
+        }
+
         /// <summary>
         /// This function generates array with random numbers
         /// </summary>
@@ -106,7 +106,7 @@ namespace Prjcts
             }
             return arr;
         }
-        
+
         /// <summary>
         /// This function records array from the user
         /// </summary>
@@ -128,7 +128,7 @@ namespace Prjcts
             }
             return arr;
         }
-        
+
         /// <summary>
         /// This function prints array in <c>[a, b, c]</c> format
         /// </summary>
@@ -143,7 +143,7 @@ namespace Prjcts
                 Console.Write(i < arr.Length - 1 ? ", " : "]");
             }
         }
-        
+
         /// <summary>
         /// This function checks which array between the two is the longest one
         /// </summary>
@@ -154,7 +154,7 @@ namespace Prjcts
         {
             return (arr1.Length > arr2.Length) ? arr1 : arr2;
         }
-        
+
         /// <summary>
         /// This function checks which array between the two is the shortest one
         /// </summary>

@@ -92,58 +92,58 @@ namespace Prjcts
             return middlePoint;
         }
 
-	/// <summary>
-	/// Calculates a slope between current <c>Point</c> instance and <b>parameter</b> <c>Point</c> instance 
-	/// </summary>
-	/// <param name="p">Other <c>Point</c> instance</param>
-	/// <returns>Slope between current <c>Point</c> instance and <b>parameter</b> <c>Point</c> instance </returns>
-	public double Slope(Point p)
-	{
-	    return (p.GetY() - this.y) / (p.GetX() - this.x);
-	}
+        /// <summary>
+        /// Calculates a slope between current <c>Point</c> instance and <b>parameter</b> <c>Point</c> instance 
+        /// </summary>
+        /// <param name="p">Other <c>Point</c> instance</param>
+        /// <returns>Slope between current <c>Point</c> instance and <b>parameter</b> <c>Point</c> instance </returns>
+        public double Slope(Point p)
+        {
+            return (p.GetY() - this.y) / (p.GetX() - this.x);
+        }
 
-	/// <summary>
-	/// Finds out which <c>Point</c> instance is farthest from the 0,0 coordinates (origin) from array of <c>Point</c> instances
-	/// </summary>
-	/// <param name="points">Array of <c>Point</c> instances to find out which is farthest from the origin (center dot (0,0)) </param>
-	public static Point FarthestPoint(Point[] points)
-	{
-	    double largestDistance, currentDistance; 
-	    int lrgDistIndex;
-	    Point origin = new Point();
-	    
-	    largestDistance = points[0].Distance(origin);
-	    lrgDistIndex = 0;
-	    for (int i = 1; i < points.Length; i++)
-	    {
-		currentDistance = points[i].Distance(origin);
-		if (currentDistance > largestDistance)
-		{
-		    largestDistance = currentDistance;
-		    lrgDistIndex = i;
-		}
-	    }
+        /// <summary>
+        /// Finds out which <c>Point</c> instance is farthest from the 0,0 coordinates (origin) from array of <c>Point</c> instances
+        /// </summary>
+        /// <param name="points">Array of <c>Point</c> instances to find out which is farthest from the origin (center dot (0,0)) </param>
+        public static Point FarthestPoint(Point[] points)
+        {
+            double largestDistance, currentDistance; 
+            int lrgDistIndex;
+            Point origin = new Point();
 
-	    return points[lrgDistIndex];
-	}
+            largestDistance = points[0].Distance(origin);
+            lrgDistIndex = 0;
+            for (int i = 1; i < points.Length; i++)
+            {
+                currentDistance = points[i].Distance(origin);
+                if (currentDistance > largestDistance)
+                {
+                    largestDistance = currentDistance;
+                    lrgDistIndex = i;
+                }
+            }
 
-	/// <summary>
-	/// Creates array of <c>Point</c> instances that are in the middle of each <c>Point</c> instance in <b>parameter</b> array<br/>
-	/// and origin (0,0 coords)
-	/// </summary>
-	/// <param name="points">Array of <c>Point</c> instances to find middle of them and origin (0,0 coords)</param>
-	public static Point[] HalfPoints(Point[] points)
-	{
-	    Point[] middlePoints = new Point[points.Length];
-	    Point origin = new Point();
+            return points[lrgDistIndex];
+        }
 
-	    for (int i = 0; i < points.Length; i++)
-	    {
-		middlePoints[i] = points[i].MiddlePoint(origin);	
-	    }
+        /// <summary>
+        /// Creates array of <c>Point</c> instances that are in the middle of each <c>Point</c> instance in <b>parameter</b> array<br/>
+        /// and origin (0,0 coords)
+        /// </summary>
+        /// <param name="points">Array of <c>Point</c> instances to find middle of them and origin (0,0 coords)</param>
+        public static Point[] HalfPoints(Point[] points)
+        {
+            Point[] middlePoints = new Point[points.Length];
+            Point origin = new Point();
 
-	    return middlePoints;
-	}
+            for (int i = 0; i < points.Length; i++)
+            {
+                middlePoints[i] = points[i].MiddlePoint(origin);	
+            }
+
+            return middlePoints;
+        }
 
         /// <summary>
         /// Creates a copy of current <c>Point</c> instance
@@ -183,19 +183,19 @@ namespace Prjcts
 
             Point point4 = new Point(point);
 
-	    Console.WriteLine($"The slop between point {point} and {point2} is {point2.Slope(point)}");
-	    
-	    Point[] points = {point, point2, point3};
+            Console.WriteLine($"The slop between point {point} and {point2} is {point2.Slope(point)}");
 
-	    Console.WriteLine($"Farthest point from origin (( 0, 0 ) coords) is {Point.FarthestPoint(points)}. (comparing {point},{point2},{point3}");
+            Point[] points = {point, point2, point3};
 
-	    Point[] halfPoints = Point.HalfPoints(points);
-	    Console.Write($"Halfed points are: [");
-	    for (int i = 0 ; i < points.Length; i++)
-	    {
-		Console.Write(halfPoints[i].ToString());
-	    }
-	    Console.Write("]");
+            Console.WriteLine($"Farthest point from origin (( 0, 0 ) coords) is {Point.FarthestPoint(points)}. (comparing {point},{point2},{point3}");
+
+            Point[] halfPoints = Point.HalfPoints(points);
+            Console.Write($"Halfed points are: [");
+            for (int i = 0 ; i < points.Length; i++)
+            {
+                Console.Write(halfPoints[i].ToString());
+            }
+            Console.Write("]");
         }
     }
 }
