@@ -5,7 +5,7 @@ namespace Prjcts
 {
     internal class Sort
     {
-        public static int[] BubbleSort(int[] arr)
+        public static void BubbleSort(int[] arr)
         {
             int tmp;
             for (int i = 0; i < arr.Length; i++)
@@ -31,6 +31,8 @@ namespace Prjcts
             Sort.BubbleSort(arr);
 
             Funcs.PrintArray(arr);
+
+            Sort.Array(arr);
         }
     }
 }
