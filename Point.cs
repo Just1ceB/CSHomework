@@ -16,8 +16,8 @@ namespace Prjcts
         /// <summary>
         /// Creates a <c>Point</c> instance using input <b>X</b> and <b>Y</b> coordinates
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="x"><b>X</b> coordinate in <c>Point</c> instance</param>
+        /// <param name="y"><b>Y</b> coordinate in <c>Point</c> instance</param>
         public Point(double x, double y)
         {
             this.x = x;
@@ -173,6 +173,8 @@ namespace Prjcts
             Console.WriteLine($"Point coordinates is: {point}");
 
             Point point2 = new Point();
+
+            Console.WriteLine(point2.GetY());
 
             Console.WriteLine($"New point coordinates is: {point2}");
 
