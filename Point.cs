@@ -163,7 +163,7 @@ namespace Prjcts
         /// </summary>
         public override string ToString()
         {
-            return $"( {this.x}, {this.y} )".ToString();
+            return $"( {this.x:0.##}, {this.y:0.##} )".ToString();
         }
 
         public static void UnitTest()
@@ -185,7 +185,10 @@ namespace Prjcts
 
             Point point4 = new Point(point);
 
-            Console.WriteLine($"The slop between point {point} and {point2} is {point2.Slope(point)}");
+            Point point5 = new Point(2, 4);
+            Point point6 = new Point(7, 8);
+
+            Console.WriteLine($"The slope between point {point5} and {point6} is {point5.Slope(point6)}");
 
             Point[] points = {point, point2, point3};
 
